@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-cairo: "Cairo", sans-serif;
+  --font-rajdhani: "Rajdhani", sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-spin-reverse-slow: spin-reverse 12s linear infinite;
+  --animate-grid-flow: grid-flow 20s linear infinite;
+
+  @keyframes spin-reverse {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
+  }
+  
+  @keyframes grid-flow {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+  }
+}
+
+:root {
+  --radius: 0.5rem;
+  
+  /* Cyberpunk / Neo-Fintech Dark Mode Palette */
+  --background: oklch(0.12 0.02 260); /* Deep Blue-Black */
+  --foreground: oklch(0.95 0 0);      /* Bright White */
+  
+  --card: oklch(0.16 0.03 260);       /* Slightly lighter */
+  --card-foreground: oklch(0.95 0 0);
+  
+  --popover: oklch(0.16 0.03 260);
+  --popover-foreground: oklch(0.95 0 0);
+  
+  --primary: oklch(0.65 0.22 190);    /* Neon Cyan */
+  --primary-foreground: oklch(0.12 0.02 260);
+  
+  --secondary: oklch(0.25 0.05 260);  /* Muted Blue */
+  --secondary-foreground: oklch(0.95 0 0);
+  
+  --muted: oklch(0.25 0.05 260);
+  --muted-foreground: oklch(0.7 0.05 260);
+  
+  --accent: oklch(0.6 0.2 300);       /* Neon Purple */
+  --accent-foreground: oklch(0.95 0 0);
+  
+  --destructive: oklch(0.5 0.2 25);   /* Warning Red */
+  --border: oklch(0.25 0.05 260);
+  --input: oklch(0.2 0.03 260);
+  --ring: oklch(0.65 0.22 190);
+  
+  /* Chart Colors */
+  --chart-1: oklch(0.65 0.22 190); /* Cyan */
+  --chart-2: oklch(0.6 0.2 300);   /* Purple */
+  --chart-3: oklch(0.7 0.15 140);  /* Green */
+  --chart-4: oklch(0.75 0.15 80);  /* Yellow */
+  --chart-5: oklch(0.6 0.2 20);    /* Orange */
+}
+
+/* Force dark mode */
+.dark {
+  --background: oklch(0.12 0.02 260);
+  --foreground: oklch(0.95 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-cairo antialiased;
+    /* Tech Grid Background */
+    background-image: 
+      radial-gradient(circle at 50% 0%, oklch(0.2 0.05 260 / 0.5) 0%, transparent 60%),
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 50px 50px, 50px 50px;
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5, h6, .font-display {
+    @apply font-rajdhani font-bold tracking-wide;
+  }
+}
+
+.glass-card {
+  @apply bg-card/60 backdrop-blur-md border border-white/10 shadow-xl;
+}
+
+.neon-border {
+  @apply border border-primary/50 shadow-[0_0_15px_oklch(0.65_0.22_190/0.3)];
+}
+
+.neon-text {
+  text-shadow: 0 0 10px oklch(0.65 0.22 190 / 0.5);
+}
+
+.pattern-grid-lg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
